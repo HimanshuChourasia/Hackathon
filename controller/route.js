@@ -29,6 +29,12 @@ router.get('/index',function(request,response){
 });
 
 router.post('/index',urlencoded,function (request,response) {
+  var data = request.body;
+  client.messages.create({
+    from: "+19803191617",
+    to: "+1"+data.phone,
+    body: "Hi "+ data.firstname+" , Your Appointment for "+data.service+" services is confirmed on "+data.date+" at "+data.time
+  }).then((message) => console.log(message.sid));
 
     if(patientDB.getUsers(request.body.email) === true){
       response.render(path.join(__dirname,'..','/views/index')) ;
@@ -44,7 +50,7 @@ router.get('/index',function (request,response) {
     response.render(path.join(__dirname,'..','/views/index')) ;
 });
 
-router.post('/index',urlencodedParser,function (request, response) {
+/*router.post('/index',urlencodedParser,function (request, response) {
     console.log(request.body);
     var data = request.body;
     client.messages.create({
@@ -54,7 +60,7 @@ router.post('/index',urlencodedParser,function (request, response) {
     }).then((message) => console.log(message.sid));
     response.render(path.join(__dirname,'..','/views/index')) ;
 
-});
+});*/
 
 router.get('/about',function (request,response) {
     response.render(path.join(__dirname,'..','/views/about')) ;
