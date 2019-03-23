@@ -17,7 +17,12 @@ var client = require('twilio')(
 
 
 router.get('/',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/index')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/index'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/index'),{flag:false}) ;
+  }
 });
 
 
@@ -25,7 +30,13 @@ router.get('/signIn',function (request,response) {
    response.render(path.join(__dirname,'..','/views/login')) ;
 });
 router.get('/index',function(request,response){
-  response.render(path.join(__dirname,'..','/views/index')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/index'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/index'),{flag:false}) ;
+  }
+
 });
 
 router.post('/index',urlencoded,function (request,response) {
@@ -37,7 +48,8 @@ router.post('/index',urlencoded,function (request,response) {
   }).then((message) => console.log(message.sid));
 
     if(patientDB.getUsers(request.body.email) === true){
-      response.render(path.join(__dirname,'..','/views/index')) ;
+      request.session.theUser=true;
+      response.render(path.join(__dirname,'..','/views/index'),{flag:request.session.theUser}) ;
     }
     else{
       response.render(path.join(__dirname,'..','/views/login')) ;
@@ -47,7 +59,12 @@ router.post('/index',urlencoded,function (request,response) {
 
 router.get('/index',function (request,response) {
   console.log("called");
-    response.render(path.join(__dirname,'..','/views/index')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/index'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/index'),{flag:false}) ;
+  }
 });
 
 /*router.post('/index',urlencodedParser,function (request, response) {
@@ -63,30 +80,70 @@ router.get('/index',function (request,response) {
 });*/
 
 router.get('/about',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/about')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/about'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/about'),{flag:false}) ;
+  }
+
 });
 
 router.get('/appointment',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/appointment')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/appointment'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/appointment'),{flag:false}) ;
+  }
 });
 
 router.get('/doctor',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/doctor')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/doctor'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/doctor'),{flag:false}) ;
+  }
 });
 
 router.get('/department',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/department')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/department'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/department'),{flag:false}) ;
+  }
 });
 
 router.get('/pricing',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/pricing')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/pricing'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/pricing'),{flag:false}) ;
+  }
 });
 
 router.get('/contact',function (request,response) {
-    response.render(path.join(__dirname,'..','/views/contact')) ;
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/contact'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/contact'),{flag:false}) ;
+  }
 });
 router.get('/blog',function(request,response){
-  response.render(path.join(__dirname,'..','/views/blog')) ;
-})
+  if(request.session.theUser===true){
+    response.render(path.join(__dirname,'..','/views/blog'),{flag:true}) ;
+  }
+  else{
+    response.render(path.join(__dirname,'..','/views/blog'),{flag:false}) ;
+  }
+});
+router.get('/signOut',function(request,response){
+  request.session.destroy()
+  response.render(path.join(__dirname,'..','/views/index'),{flag:false}) ;
+});
 
 module.exports = router
