@@ -78,6 +78,8 @@ router.get('/pricing',function (request,response) {
 router.get('/contact',function (request,response) {
     response.render(path.join(__dirname,'..','/views/contact')) ;
 });
-
+router.get('/blog',function(request,response){
+  response.render(path.join(__dirname,'..','/views/blog')) ;
+})
 
 module.exports = router
