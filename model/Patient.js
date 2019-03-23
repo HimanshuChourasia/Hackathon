@@ -1,19 +1,18 @@
 var fs=require('fs');
-var rawdata=fs.readFileSync('../model/patient.json');
-var getUsers=function(id){
+var rawdata=fs.readFileSync('model/patient.json');
+module.exports.getUsers=function(emailAddress){
   var output=JSON.parse(rawdata);
   for(i=0;i<output.user.length;i++){
-     if(id===output.user[i].userId){
+     if(emailAddress===output.user[i].emailAddress){
        var res=i;
      }
 };
   if(res>=0)
   {
-    return output.user[res];
+    return true;
   }
   else
   {
-    return -1;
+    return false;
   }
 };
-console.log(getUsers('usid1'));
