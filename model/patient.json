@@ -1,0 +1,8 @@
+{
+  "user":
+[
+{"userId":"usid1","firstName":"Lalith","lastName":"Kumar","emailAddress":"lalith@gmail.com","address1Field":"apt L","address2Field":"diploma drive","city":"Charlotte","state":"North Carolina","zipCode":"26862","country":"United states of America","password":"xyz123"},
+{"userId":"usid2","firstName":"nithin","lastName":"huli","emailAddress":"huli@gmail.com","address1Field":"apt L","address2Field":"diploma drive","city":"Charlotte","state":"North Carolina","zipCode":"26862","country":"United states of America","password":"xyz123"},
+{"userId":"usid3","firstName":"ram","lastName":"pandit","emailAddress":"pandit@gmail.com","address1Field":"apt L","address2Field":"diploma drive","city":"Charlotte","state":"North Carolina","zipCode":"26862","country":"United states of America","password":"xyz123"}
+]
+}
